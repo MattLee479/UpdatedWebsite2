@@ -1,0 +1,4 @@
+[2025-06-06 21:53:17] | Route: OpenAI
+User: How can I contact support?
+Bot: You can contact support by emailing admin@solarisai.co.uk or by calling 07737 841384.
+

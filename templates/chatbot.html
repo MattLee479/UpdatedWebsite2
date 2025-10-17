@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- # Basic HTML metadata and page setup -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbot</title>
+
+  <!-- # Link to external stylesheet with versioning -->
+  <link rel="stylesheet" href="/static/chatbot.css" />
+
+  <style>
+    /* # General page layout and font */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    /* # Wrapper container to vertically structure page */
+    #wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* # Main chat container area */
+    #chat-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    /* # Header styling for chatbot title */
+    .chat-header {
+      padding: 12px;
+      background-color: #ffd000;
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* # Scrollable chat box area */
+    .chat-box {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background: #ffffff;
+    }
+
+    /* # Container for input field and send button */
+    .input-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    /* # User input field */
+    input[type="text"] {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* # Send button next to input field */
+    .input-container button {
+      padding: 10px 15px;
+      background-color: #ffd000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* # Chat footer section */
+    .chat-footer {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    /* # Layout for footer buttons (clear/end) */
+    .footer-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* # Footer button styling */
+    .footer-buttons button {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* # Feedback form hidden by default */
+    #feedback-form {
+      display: none;
+      background-color: #a66eeadc;
+      padding: 10px;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+
+    /* # Layout for rating scale (1–10) */
+    .rating-scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      justify-items: center;
+      margin: 10px 0;
+    }
+
+    /* # Individual rating buttons */
+    .rating-scale span {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      border-radius: 50%;
+      background-color: #eee;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* # Highlight selected rating */
+    .rating-scale span.selected {
+      background-color: #ffd000;
+      color: #000;
+    }
+
+    /* # Feedback textarea */
+    textarea {
+      width: 90%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    /* # Submit/Skip feedback buttons */
+    #feedback-form button {
+      margin: 8px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #4f75db;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* # Avatar image styling */
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin: 0 8px;
+      background-color: #fff;
+      padding: 2px;
+    }
+
+    /* # General message layout */
+    .message {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+
+    /* # Bot message alignment */
+    .bot {
+      justify-content: flex-start;
+    }
+
+    /* # User message alignment */
+    .user {
+      justify-content: flex-end;
+    }
+
+    /* # Chat bubble container */
+    .message .bubble {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      background-color: #f9f9f9;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    /* # Bot chat bubble color */
+    .bot .bubble {
+      background-color: #4f74dbcb;
+      margin-left: 10px;
+    }
+
+    /* # User chat bubble color */
+    .user .bubble {
+      background-color: #a66eead7;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- # Entire content wrapper -->
+  <div id="wrapper">
+    <div id="chat-container">
+      <!-- # Chat header bar with title -->
+      <div class="chat-header">Solaris AI Support</div>
+
+      <!-- # Where messages appear -->
+      <div id="chat-box" class="chat-box"></div>
+
+      <!-- # Quick reply buttons under chat box -->
+      <div class="quick-buttons" id="quick-buttons">
+        <button onclick="sendQuick('What services do you offer?')">Services</button>
+        <button onclick="sendQuick('Tell me about your company')">About</button>
+        <button onclick="sendQuick('Where are you located?')">Location</button>
+        <button onclick="sendQuick('How can I contact support?')">Contact</button>
+      </div>
+
+      <!-- # Input area with text field and Send button -->
+      <div class="input-container">
+        <input type="text" id="user-input" placeholder="Ask me anything..." onkeydown="if (event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
+      <!-- # Clear and End chat footer buttons -->
+      <div class="chat-footer">
+        <div class="footer-buttons">
+          <button onclick="clearChat()">Clear Chat</button>
+          <button onclick="showFeedbackForm()">End Chat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- # Hidden feedback form shown on End Chat -->
+    <div id="feedback-form">
+      <h3>Rate this chat:</h3>
+      <div class="rating-scale">
+        <!-- # Feedback buttons 1 to 10 -->
+        <span onclick="rate(1)">1</span><span onclick="rate(2)">2</span><span onclick="rate(3)">3</span><span onclick="rate(4)">4</span>
+        <span onclick="rate(5)">5</span><span onclick="rate(6)">6</span><span onclick="rate(7)">7</span><span onclick="rate(8)">8</span>
+        <span onclick="rate(9)">9</span><span onclick="rate(10)">10</span>
+      </div>
+      <textarea id="feedback-comment" rows="2" placeholder="Optional comment..."></textarea><br>
+      <button onclick="submitFeedback()">Submit</button>
+      <button onclick="skipFeedback()">Skip</button>
+    </div>
+  </div>
+
+  <script>
+    // # Reference to chat box and input field
+    const chatBox = document.getElementById("chat-box");
+    const inputField = document.getElementById("user-input");
+
+    // # Adds user/bot message to the DOM
+    function appendMessage(type, text) {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message", type);
+
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = type === "user" ? "/static/user-icon.webp" : "/static/bot-icon.webp";
+
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.textContent = text;
+
+      if (type === "user") {
+        messageDiv.appendChild(bubble);
+        messageDiv.appendChild(avatar);
+      } else {
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(bubble);
+      }
+
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // # Show "typing..." while waiting for bot
+    function appendTypingIndicator() {
+      const typingDiv = document.createElement("div");
+      typingDiv.classList.add("message", "bot");
+      typingDiv.id = "typing-indicator";
+
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = "/static/bot-icon.webp";
+
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.textContent = "Bot is typing...";
+
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(bubble);
+
+      chatBox.appendChild(typingDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // # Remove typing message
+    function removeTypingIndicator() {
+      const typing = document.getElementById("typing-indicator");
+      if (typing) typing.remove();
+    }
+
+    // # Main message sending logic
+    async function sendMessage() {
+      const message = inputField.value.trim();
+      if (!message) return;
+
+      appendMessage("user", message);
+      inputField.value = "";
+
+      appendTypingIndicator();
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+        removeTypingIndicator();
+        appendMessage("bot", data.reply);
+      } catch (error) {
+        removeTypingIndicator();
+        appendMessage("bot", "Sorry, something went wrong. Please try again later.");
+      }
+    }
+
+    // # Send a predefined question
+    function sendQuick(text) {
+      inputField.value = text;
+      sendMessage();
+    }
+
+    // # Clears all chat messages
+    function clearChat() {
+      chatBox.innerHTML = "";
+    }
+
+    // # Show feedback form on End Chat
+    function showFeedbackForm() {
+      document.getElementById("feedback-form").style.display = "block";
+    }
+
+    // # Skip feedback and hide form
+    function skipFeedback() {
+      document.getElementById("feedback-form").style.display = "none";
+    }
+
+    // # Select feedback rating
+    let selectedRating = 0;
+    function rate(number) {
+      selectedRating = number;
+      document.querySelectorAll('.rating-scale span').forEach((el, i) => {
+        el.classList.toggle('selected', i + 1 === number);
+      });
+    }
+
+    // # Send feedback to backend
+    async function submitFeedback() {
+      const comment = document.getElementById("feedback-comment").value;
+      try {
+        await fetch("/feedback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ rating: selectedRating, comment })
+        });
+        document.getElementById("feedback-form").innerHTML = "<p>Thanks for your feedback!</p>";
+      } catch (err) {
+        alert("Failed to submit feedback.");
+      }
+    }
+
+    // # Initial welcome message from bot
+    appendMessage("bot", "Hello! How can I assist you today?");
+  </script>
+</body>
+</html>

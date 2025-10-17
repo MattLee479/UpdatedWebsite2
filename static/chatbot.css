@@ -1,0 +1,233 @@
+/* Base Reset */
+html, body {
+  margin: 0;                        /* Remove default margin */
+  padding: 0;                       /* Remove default padding */
+  height: 100%;                     /* Full height */
+  width: 100%;                      /* Full width */
+  background: white;               /* Set background color */
+  font-family: 'Segoe UI', sans-serif;  /* Font choice */
+  overflow: hidden;                /* Prevent scrolling */
+  box-sizing: border-box;          /* Include padding/border in size */
+}
+
+/* Chat Container */
+#chat-container {
+  display: flex;                   /* Flex layout */
+  flex-direction: column;         /* Stack children vertically */
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+}
+
+/* Header */
+.chat-header {
+  padding: 12px;                           /* Inner spacing */
+  background: linear-gradient(135deg, #4f75db, #a56eea); /* Gradient header */
+  font-weight: bold;
+  font-size: 16px;
+  color: #f1efef;
+  display: flex;                           /* Flex layout */
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;          /* Subtle bottom border */
+}
+
+/* Chat Box */
+#chat-box {
+  flex-grow: 1;                /* Take remaining space */
+  overflow-y: auto;            /* Enable vertical scrolling */
+  padding: 10px;
+  background: #ffffff;
+}
+
+/* Message Layout */
+.message {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.bot {
+  justify-content: flex-start;     /* Align bot messages left */
+}
+
+.user {
+  justify-content: flex-end;       /* Align user messages right */
+}
+
+.message .bubble {
+  max-width: 70%;                   /* Prevent too-wide bubbles */
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  animation: fadeIn 0.3s ease-in-out;  /* Smooth entry */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.bot .bubble {
+  background-color: #fff3c4;       /* Bot message background */
+  margin-left: 10px;
+}
+
+.user .bubble {
+  background-color: #c1f0dc;       /* User message background */
+  margin-right: 10px;
+}
+
+/* Avatars */
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;              /* Circular */
+  object-fit: contain;
+  margin: 0 8px;
+  background-color: #fff;
+  padding: 2px;
+}
+
+/* Quick Buttons - Desktop */
+.quick-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  position: relative;               /* Keeps in layout flow */
+  z-index: 2;                       /* Sit above chat */
+  background-color: #ffffff;        /* White background */
+}
+
+.quick-buttons button {
+  background: linear-gradient(135deg, #4f75db, #a56eea); /* Gradient background */
+  color: #ffffff;
+  padding: 6px 0;
+  font-size: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  flex: 1 1 auto;
+  max-width: 22%;
+  min-width: 22%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.quick-buttons button:hover {
+  background: linear-gradient(135deg, #4769c6, #935ed3); /* Darker on hover */
+}
+
+/* Quick Buttons - Mobile Responsive */
+@media (max-width: 500px) {
+  .quick-buttons {
+    flex-wrap: wrap;               /* Allow wrapping */
+  }
+
+  .quick-buttons button {
+    max-width: 48%;
+    min-width: 48%;
+    margin-bottom: 8px;
+  }
+}
+
+/* Input Bar */
+.input-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-container button {
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #4f75db, #a56eea);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Footer Buttons */
+.chat-footer {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-buttons button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.footer-buttons button:hover {
+  background-color: #f9f9f9;
+}
+
+/* Feedback Form */
+#feedback-form {
+  background-color: #eaf1ff;      /* Light blue background */
+  border-top: 1px solid #eee;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Rating Scale Layout */
+.rating-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);  /* 5 columns */
+  gap: 8px 10px;
+  justify-items: center;
+  margin: 12px auto;
+  max-width: 280px;
+  width: 100%;
+}
+
+.rating-scale span {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 15px;
+  border-radius: 50%;
+  background-color: #eee;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.rating-scale span.selected {
+  background: linear-gradient(135deg, #4f75db, #a56eea); /* Highlight selected */
+  color: #ffffff;
+}
+
+/* Message Entry Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

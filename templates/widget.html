@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- # Character encoding and responsive settings -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Widget</title>
+
+  <style>
+    /* # Remove default margin and padding from body */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* # Styles for the circular floating chat bubble */
+    #chat-bubble {
+      position: fixed;                    /* Stays in place when scrolling */
+      bottom: 20px;                       /* 20px from bottom */
+      right: 20px;                        /* 20px from right */
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #2563eb, #9333ea); /* # Gradient background */
+      border-radius: 50%;                /* Makes it a circle */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* # Drop shadow */
+      display: flex;                     /* Center content */
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;                   /* Cursor becomes pointer on hover */
+      z-index: 1000;                     /* On top of other elements */
+    }
+
+    /* # Icon image inside the bubble */
+    #chat-bubble img {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* # Styles for the chatbot iframe popup */
+    #chat-iframe {
+      position: fixed;
+      bottom: 90px;                      /* Slightly above the bubble */
+      right: 20px;
+      width: 360px;
+      height: 550px;
+      border: none;                      /* Removes default iframe border */
+      border-radius: 12px;               /* Rounded corners */
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* More prominent shadow */
+      display: none;                     /* Hidden until toggled */
+      z-index: 999;                      /* Below the bubble but above page content */
+    }
+
+    /* # Responsive adjustments for mobile view */
+    @media (max-width: 500px) {
+      #chat-iframe {
+        width: 80%;
+        height: 70%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- # Floating chat icon bubble that opens/closes the iframe -->
+<div id="chat-bubble" onclick="toggleChat()">
+  <img src="/static/speech-icon.webp" alt="Chat Icon">
+</div>
+
+<!-- # Iframe that loads the chatbot.html UI -->
+<iframe id="chat-iframe" src="/chatbot" allow="clipboard-write"></iframe>
+
+<script>
+  // # References to iframe and bubble
+  const chatIframe = document.getElementById("chat-iframe");
+  const chatBubble = document.getElementById("chat-bubble");
+  let chatOpen = false;
+
+  // # Toggle iframe visibility when the bubble is clicked
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    chatIframe.style.display = chatOpen ? "block" : "none";
+  }
+
+  // # Optional: Close the iframe if clicked outside of chat
+  window.addEventListener("click", function(e) {
+    if (
+      chatOpen &&
+      !chatBubble.contains(e.target) &&
+      !chatIframe.contains(e.target)
+    ) {
+      chatIframe.style.display = "none";
+      chatOpen = false;
+    }
+  });
+</script>
+
+</body>
+</html>

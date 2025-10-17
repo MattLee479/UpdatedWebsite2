@@ -1,0 +1,77 @@
+Q: What is Solaris AI?
+A: Solaris AI is a technology company that designs, builds, and deploys AI-powered chatbot solutions for websites and businesses. We specialize in intelligent, professional, and highly customizable chat widgets that automate customer interactions and support
+
+Q: What is your mission?
+A: Our mission is to make AI accessible to businesses of all sizes — especially those without in-house tech teams.
+
+Q: What services do you offer?
+A: We create and deploy AI-powered chatbots for websites. These bots can answer questions, generate leads, and provide 24/7 support.
+
+Q: How customizable are your chatbots?
+A: Every chatbot is fully customizable in style, branding, and functionality. We tailor them to your business goals and tone.
+
+Q: How long does setup take?
+A: Most bots are ready within 3–5 business days, depending on complexity and client input.
+
+Q: Do you offer support after launch?
+A: Yes — we offer ongoing support and maintenance if needed, as well as analytics and updates.
+
+Q: What platforms are the bots compatible with?
+A: Our bots can run on any modern website and integrate easily into existing pages or CMS platforms.
+
+Q: How much does it cost?
+A: Pricing depends on your specific needs. We offer flexible packages for different levels of complexity and company needs. 
+
+Q: Can I update the bot later?
+A: Yes. We make it easy to update content, add features, or refine the bot over time.
+
+Q: Is this powered by ChatGPT?
+A: Yes — our bots are powered by GPT-3.5 or GPT-4, and we enhance their behavior using custom instructions, content filtering, and your own business data.
+
+Q: Do you offer machine learning or custom AI development?
+A: No. Solaris AI is focused specifically on chatbot development — we do not offer general machine learning services.
+
+Q: What is your pricing structure?
+A: We charge an initial setup fee, followed by monthly packages. These range from basic servicing and AI usage to premium plans with ongoing revisions, maintenance, higher usage limits, and priority server support.
+
+Q: How involved is the client in setup?
+A: We work closely with each client to understand their brand, tone, and goals. Their input helps shape the chatbot content and behavior.
+
+Q: What industries do you work with?
+A: All industries, as long as you have a website then we can work with you!
+
+Q: Do you support multiple languages?
+A: Yes we do support multiple languages, we can't guarentee 100% accuarcy due to the language software we run but it has a very good record of being accurate for almost all languages.
+
+Q: Do your bots support voice input or audio?
+A: At the moment in time our bots do not support this but we are considering this in the future.
+
+Q: How secure is the chatbot system?
+A: We are always working on securing out chatbots and we host these externally outside of your website so there is no security concern to yourselfs
+
+Q: Can I try a demo?
+A: You can, this is a perfect demo examnple you are using as I am one of the chatbots Solaris AI offers.
+
+Q: What kind of analytics do you provide?
+A: We can develop admin pages to track almost any analytic you require, this will need to be discussed during quoting.
+
+Q: Do you offer white-label or reseller options?
+A: We do offer white-labeling as one of our packages.
+
+Q: How do I get started?
+A: Email admin@solarisai.co.uk and we will get back to you within 24 hours!
+
+Q: What happens if I need changes later?
+A: We can make changes later on, this will be discussed with you during the quoting process
+
+Q: How do I contact support?
+A: You can email admin@solarisai.co.uk or call at 07737 841384.
+
+Q: Can your chatbot be embedded on multiple pages or domains?
+A: Yes it can, we make it as quick and simple for you!
+
+Q: Do you offer admin dashboards or analytics interfaces?
+A: Yes we can, this can track multiple metrics and analytics
+
+Q: Where are you located?
+A: We are based in the West Midlands, England

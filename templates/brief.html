@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Brief Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/brief.css">
+
+</head>
+<body>
+    <div class="container">
+        <header class="wizard-header">
+            <h1 class="wizard-title">Website Brief Builder</h1>
+            <p class="wizard-subtitle">Let's create your perfect website together</p>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-steps" id="progressSteps">
+                <div class="progress-step active">Business</div>
+                <div class="progress-step">Pages</div>
+                <div class="progress-step">Features</div>
+                <div class="progress-step">Branding</div>
+                <div class="progress-step">Budget & Review</div>
+            </div>
+        </div>
+
+        <div class="alert alert-info" id="autoSaveAlert" style="display: none;">
+            <span>💾</span>
+            <span>Your progress is automatically saved. You can return anytime to continue!</span>
+        </div>
+
+        <form id="briefForm">
+            <!-- Honeypot -->
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+
+            <div class="wizard-card">
+                <!-- Step 1: Business & Contact -->
+                <div class="step-content active" data-step="1">
+                    <h2 class="section-title">Business & Contact Information</h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="businessName">
+                                Business Name<span class="required">*</span>
+                            </label>
+                            <input type="text" id="businessName" name="businessName" class="form-input" required>
+                            <div class="form-error">Please enter your business name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contactName">
+                                Contact Name<span class="required">*</span>
+                            </label>
+                            <input type="text" id="contactName" name="contactName" class="form-input" required>
+                            <div class="form-error">Please enter your name</div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="email">
+                                Email<span class="required">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <div class="form-error">Please enter a valid email address</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">
+                                Phone
+                            </label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="businessType">
+                                Business Type<span class="required">*</span>
+                            </label>
+                            <select id="businessType" name="businessType" class="form-select" required>
+                                <option value="">Select...</option>
+                                <option value="restaurant">Restaurant / Café</option>
+                                <option value="retail">Retail / Shop</option>
+                                <option value="services">Professional Services</option>
+                                <option value="health">Health & Wellness</option>
+                                <option value="beauty">Beauty & Spa</option>
+                                <option value="fitness">Fitness & Gym</option>
+                                <option value="trade">Trades (Plumber, Electrician, etc.)</option>
+                                <option value="creative">Creative / Agency</option>
+                                <option value="education">Education / Training</option>
+                                <option value="events">Events & Hospitality</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="form-error">Please select a business type</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="location">
+                                Location / Country
+                            </label>
+                            <input type="text" id="location" name="location" class="form-input" placeholder="e.g., London, UK">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="projectDescription">
+                            Short Project Description<span class="required">*</span>
+                        </label>
+                        <textarea id="projectDescription" name="projectDescription" class="form-textarea" rows="3" required></textarea>
+                        <div class="form-helper">Briefly describe what you need (2-4 lines)</div>
+                        <div class="form-error">Please describe your project</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Pages & Navigation -->
+                <div class="step-content" data-step="2">
+                    <h2 class="section-title">Pages & Navigation</h2>
+                    <div class="form-helper" style="margin-bottom: 24px;">Add all the pages you need for your website</div>
+
+                    <div id="pagesRepeater"></div>
+                    <button type="button" class="btn-add" onclick="addPage()">+ Add Page</button>
+
+                    <div class="form-group" style="margin-top: 32px;">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="needBooking" name="needBooking">
+                            <label for="needBooking">I need to take bookings/appointments</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Features & Integrations -->
+                <div class="step-content" data-step="3">
+                    <h2 class="section-title">Features & Integrations</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Features (select all that apply)</label>
+                        <div class="checkbox-group" id="featuresGroup">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_contact" name="features" value="Contact form">
+                                <label for="feat_contact">Custom Domain</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_contact" name="features" value="Contact form">
+                                <label for="feat_contact">Contact form</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_gallery" name="features" value="Gallery">
+                                <label for="feat_gallery">Gallery</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_booking" name="features" value="Booking system">
+                                <label for="feat_booking">Booking system</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_reviews" name="features" value="Reviews">
+                                <label for="feat_reviews">Reviews</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_faq" name="features" value="FAQ">
+                                <label for="feat_faq">FAQ</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_pricing" name="features" value="Pricing tables">
+                                <label for="feat_pricing">Pricing tables</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_newsletter" name="features" value="Newsletter signup">
+                                <label for="feat_newsletter">Newsletter signup</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_map" name="features" value="Map">
+                                <label for="feat_map">Map</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_whatsapp" name="features" value="WhatsApp button">
+                                <label for="feat_whatsapp">WhatsApp button</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_social" name="features" value="Social feed">
+                                <label for="feat_social">Social feed</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_seo" name="features" value="SEO basics">
+                                <label for="feat_seo">Advanced SEO</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="feat_cookie" name="features" value="Cookie banner">
+                                <label for="feat_cookie">Cookie banner</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin: 40px 0 24px;">Integrations</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="int_facebook">Facebook</label>
+                            <input type="url" id="int_facebook" name="int_facebook" class="form-input" placeholder="Facebook URL">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_instagram">Instagram</label>
+                            <input type="text" id="int_instagram" name="int_instagram" class="form-input" placeholder="@username">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_tiktok">TikTok</label>
+                            <input type="text" id="int_tiktok" name="int_tiktok" class="form-input" placeholder="@username">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_linkedin">LinkedIn</label>
+                            <input type="url" id="int_linkedin" name="int_linkedin" class="form-input" placeholder="LinkedIn URL">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_google">Google Business</label>
+                            <input type="url" id="int_google" name="int_google" class="form-input" placeholder="Google Business URL">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_booking_tool">Existing Booking Tool</label>
+                            <input type="text" id="int_booking_tool" name="int_booking_tool" class="form-input" placeholder="Tool name or URL">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_domain">Custom Domain You Want</label>
+                            <input type="text" id="int_domain" name="int_domain" class="form-input" placeholder="yourdomain.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="int_old_website">Old Website URL</label>
+                            <input type="url" id="int_old_website" name="int_old_website" class="form-input" placeholder="https://...">
+                        </div>
+                    </div>
+                </div>
+
+        
+                <!-- Step 4: Branding & Assets -->
+                <div class="step-content" data-step="4">
+                    <h2 class="section-title">Branding & Assets</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Upload Files (Logo, Photos, Menus, etc.)</label>
+                        <div class="file-upload-zone" id="fileUploadZone">
+                            <div class="file-upload-icon">📁</div>
+                            <div class="file-upload-text">Drag & drop files here or click to browse</div>
+                            <div class="file-upload-subtext">webp, JPG, SVG, PDF · Up to 10 files or 25MB total</div>
+                        </div>
+                        <input type="file" id="fileInput" class="file-input-hidden" multiple accept="image/webp,image/jpeg,image/svg+xml,application/pdf">
+                        <div id="filePreviewGrid" class="file-preview-grid"></div>
+                        <div class="form-helper" id="fileSizeHelper">0 MB / 25 MB</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Brand Colors</label>
+                        <div class="color-picker-group">
+                            <div class="color-picker-item">
+                                <label class="form-label" for="colorPrimary">Primary Color</label>
+                                <input type="color" id="colorPrimary" name="colorPrimary" class="color-picker-input" value="#2563eb">
+                                <input type="text" id="colorPrimaryHex" name="colorPrimaryHex" class="form-input" value="#2563eb" style="margin-top: 8px;" placeholder="#000000">
+                            </div>
+                            <div class="color-picker-item">
+                                <label class="form-label" for="colorSecondary">Secondary Color</label>
+                                <input type="color" id="colorSecondary" name="colorSecondary" class="color-picker-input" value="#9333ea">
+                                <input type="text" id="colorSecondaryHex" name="colorSecondaryHex" class="form-input" value="#9333ea" style="margin-top: 8px;" placeholder="#000000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="logoText">Logo Text (if no logo file)</label>
+                        <input type="text" id="logoText" name="logoText" class="form-input" placeholder="Your business name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="fontPreference">Font Preference</label>
+                        <input type="text" id="fontPreference" name="fontPreference" class="form-input" placeholder="e.g., Modern sans-serif, Classic serif, Playful">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Example Websites You Like</label>
+                        <div id="exampleSitesRepeater"></div>
+                        <button type="button" class="btn-add" onclick="addExampleSite()">+ Add Example</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Budget, Timeline & Review -->
+                <div class="step-content" data-step="5">
+                    <h2 class="section-title">Budget & Timeline</h2>
+
+                    <div class="form-group">
+                        <label class="form-label">Budget Range<span class="required">*</span></label>
+                        <div style="display: grid; gap: 12px;">
+                            <div class="checkbox-item">
+                                <input type="radio" id="budget1" name="budget" value="£300-£500" required>
+                                <label for="budget1">£100 - £250</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="budget2" name="budget" value="£500-£1,000">
+                                <label for="budget2">£250 - £500</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="budget3" name="budget" value="£1,000-£2,000">
+                                <label for="budget3">£500 - £1,000</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" id="budget4" name="budget" value="other">
+                                <label for="budget4">Other (please specify below)</label>
+                            </div>
+                        </div>
+                        <input type="text" id="budgetOther" name="budgetOther" class="form-input" placeholder="Enter your budget range" style="margin-top: 12px; display: none;">
+                        <div class="form-error">Please select a budget range</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="goLiveDate">Desired Go-Live Date</label>
+                        <input type="date" id="goLiveDate" name="goLiveDate" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ongoing Needs (select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ongoing_maintenance" name="ongoing" value="Maintenance">
+                                <label for="ongoing_maintenance">Maintenance</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ongoing_copy" name="ongoing" value="Copywriting">
+                                <label for="ongoing_copy">Copywriting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ongoing_images" name="ongoing" value="Stock images">
+                                <label for="ongoing_images">Stock images</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ongoing_seo" name="ongoing" value="SEO">
+                                <label for="ongoing_seo">SEO</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ongoing_speed" name="ongoing" value="Speed optimization">
+                                <label for="ongoing_speed">Speed optimization</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="additionalNotes">Additional Notes</label>
+                        <textarea id="additionalNotes" name="additionalNotes" class="form-textarea" rows="4" placeholder="Anything else we should know?"></textarea>
+                    </div>
+
+                    <hr style="border: none; border-top: 2px solid #e5e7eb; margin: 48px 0;">
+
+                    <h2 class="section-title">Review Your Brief</h2>
+                    <div id="reviewContent"></div>
+                </div>
+
+                <div class="wizard-footer">
+                    <div>
+                        <button type="button" class="btn-ghost" onclick="resetForm()">Reset Form</button>
+                    </div>
+                    <div class="wizard-footer-actions">
+                        <button type="button" class="btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">← Back</button>
+                        <button type="button" class="btn-primary" id="nextBtn" onclick="changeStep(1)">Next →</button>
+                        <button type="button" class="btn-primary" id="submitBtn" onclick="submitBrief()" style="display: none;">Submit Brief 🚀</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="wizard-card success-screen" id="successScreen">
+            <div class="success-icon">🎉</div>
+            <h2 class="success-title">Brief Submitted Successfully!</h2>
+            <p class="success-message">Thank you! We've received your brief and will contact you within 24 hours.</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="downloadJSON()">Download Brief (JSON)</button>
+                <button class="btn-secondary" onclick="location.reload()">Start New Brief</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// =========================
+// Website Brief (no booking) + Formspree submit
+// =========================
+
+// State management
+let currentStep = 1;
+const totalSteps = 5; // booking removed → 5 steps
+let pages = [];
+let exampleSites = [];
+let uploadedFiles = [];
+let totalFileSize = 0;
+const maxFileSize = 25 * 1024 * 1024; // 25MB
+const maxFiles = 10;
+let autoSaveTimer = null;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  loadFormData();
+  addPage(); // Add first page by default
+  updateProgress();
+  setupAutoSave();
+  setupFileUpload();
+  setupColorSync();
+  setupBudgetRadio();
+});
+
+// Auto-save functionality
+function setupAutoSave() {
+  const form = document.getElementById('briefForm');
+  let timeoutId;
+
+  form.addEventListener('input', function() {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {
+      saveFormData();
+      showAutoSaveAlert();
+    }, 2000);
+  });
+}
+
+function showAutoSaveAlert() {
+  const alert = document.getElementById('autoSaveAlert');
+  alert.style.display = 'flex';
+  setTimeout(() => {
+    alert.style.display = 'none';
+  }, 3000);
+}
+
+function saveFormData() {
+  const formData = new FormData(document.getElementById('briefForm'));
+  const data = {
+    step: currentStep,
+    fields: {},
+    pages: pages,
+    exampleSites: exampleSites,
+    // booking removed → no serviceTags needed
+    files: uploadedFiles.map(f => ({ name: f.name, size: f.size, type: f.type }))
+  };
+
+  for (let [key, value] of formData.entries()) {
+    if (key !== 'website') { // Skip honeypot
+      if (data.fields[key]) {
+        if (!Array.isArray(data.fields[key])) {
+          data.fields[key] = [data.fields[key]];
+        }
+        data.fields[key].push(value);
+      } else {
+        data.fields[key] = value;
+      }
+    }
+  }
+
+  localStorage.setItem('websiteBrief', JSON.stringify(data));
+}
+
+function loadFormData() {
+  const saved = localStorage.getItem('websiteBrief');
+  if (!saved) return;
+
+  try {
+    const data = JSON.parse(saved);
+    
+    // Restore basic fields
+    Object.keys(data.fields).forEach(key => {
+      const element = document.querySelector(`[name="${key}"]`);
+      if (element) {
+        if (element.type === 'checkbox' || element.type === 'radio') {
+          if (Array.isArray(data.fields[key])) {
+            data.fields[key].forEach(val => {
+              const el = document.querySelector(`[name="${key}"][value="${val}"]`);
+              if (el) el.checked = true;
+            });
+          } else {
+            element.checked = true;
+          }
+        } else {
+          element.value = data.fields[key];
+        }
+      }
+    });
+
+    // Restore complex data
+    if (data.pages) pages = data.pages;
+    if (data.exampleSites) exampleSites = data.exampleSites;
+
+    // Restore step (cap at 5 since booking was removed)
+    if (data.step) {
+      currentStep = Math.min(data.step, totalSteps);
+      showStep(currentStep);
+    }
+
+    renderPages();
+    renderExampleSites();
+  } catch (e) {
+    console.error('Error loading saved data:', e);
+  }
+}
+
+function resetForm() {
+  if (!confirm('Are you sure you want to reset the form? All data will be lost.')) return;
+  
+  localStorage.removeItem('websiteBrief');
+  location.reload();
+}
+
+// Step navigation
+function changeStep(direction) {
+  if (direction === 1 && !validateStep(currentStep)) {
+    return;
+  }
+
+  currentStep += direction;
+
+  // booking removed → no skipping logic
+  if (currentStep === totalSteps) {
+    renderReview();
+  }
+
+  showStep(currentStep);
+  updateProgress();
+  saveFormData();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showStep(step) {
+  document.querySelectorAll('.step-content').forEach((el, index) => {
+    el.classList.toggle('active', index + 1 === step);
+  });
+
+  document.getElementById('prevBtn').style.display = step === 1 ? 'none' : 'inline-block';
+  document.getElementById('nextBtn').style.display = step === totalSteps ? 'none' : 'inline-block';
+  document.getElementById('submitBtn').style.display = step === totalSteps ? 'inline-block' : 'none';
+}
+
+function updateProgress() {
+  const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+
+  document.querySelectorAll('.progress-step').forEach((step, index) => {
+    step.classList.remove('active', 'completed');
+    if (index + 1 === currentStep) {
+      step.classList.add('active');
+    } else if (index + 1 < currentStep) {
+      step.classList.add('completed');
+    }
+  });
+}
+
+function validateStep(step) {
+  const stepElement = document.querySelector(`.step-content[data-step="${step}"]`);
+  const requiredFields = stepElement.querySelectorAll('[required]');
+  let isValid = true;
+
+  requiredFields.forEach(field => {
+    const errorEl = field.parentElement.querySelector('.form-error');
+    
+    if (!field.value.trim()) {
+      field.classList.add('error');
+      if (errorEl) errorEl.classList.add('show');
+      isValid = false;
+    } else if (field.type === 'email' && !isValidEmail(field.value)) {
+      field.classList.add('error');
+      if (errorEl) errorEl.classList.add('show');
+      isValid = false;
+    } else {
+      field.classList.remove('error');
+      if (errorEl) errorEl.classList.remove('show');
+    }
+  });
+
+  // Special validation for final step (budget)
+  if (step === totalSteps) {
+    const budgetChecked = document.querySelector('[name="budget"]:checked');
+    const firstBudgetRadio = document.querySelector('[name="budget"]');
+    if (!budgetChecked) {
+      isValid = false;
+      if (firstBudgetRadio) {
+        const err = firstBudgetRadio.closest('.form-group')?.querySelector('.form-error');
+        if (err) err.classList.add('show');
+      }
+    } else if (firstBudgetRadio) {
+      const err = firstBudgetRadio.closest('.form-group')?.querySelector('.form-error');
+      if (err) err.classList.remove('show');
+    }
+  }
+
+  return isValid;
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Pages repeater
+function addPage() {
+  const id = Date.now();
+  pages.push({ id, title: '', slug: '', type: 'Custom', notes: '' });
+  renderPages();
+  saveFormData();
+}
+
+function removePage(id) {
+  pages = pages.filter(p => p.id !== id);
+  renderPages();
+  saveFormData();
+}
+
+function renderPages() {
+  const container = document.getElementById('pagesRepeater');
+  container.innerHTML = pages.map((page, index) => `
+    <div class="repeater-item">
+      ${pages.length > 1 ? `<button type="button" class="repeater-remove" onclick="removePage(${page.id})">×</button>` : ''}
+      <div class="form-group">
+        <label class="form-label">Page ${index + 1} Title<span class="required">*</span></label>
+        <input type="text" class="form-input" value="${page.title}" 
+          onchange="updatePage(${page.id}, 'title', this.value)" required>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Slug (URL)</label>
+          <input type="text" class="form-input" value="${page.slug}" 
+            onchange="updatePage(${page.id}, 'slug', this.value)"
+            placeholder="${page.title ? slugify(page.title) : 'page-url'}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Page Type</label>
+          <select class="form-select" onchange="updatePage(${page.id}, 'type', this.value)">
+            <option value="Home" ${page.type === 'Home' ? 'selected' : ''}>Home</option>
+            <option value="About" ${page.type === 'About' ? 'selected' : ''}>About</option>
+            <option value="Services" ${page.type === 'Services' ? 'selected' : ''}>Services</option>
+            <option value="Gallery" ${page.type === 'Gallery' ? 'selected' : ''}>Gallery</option>
+            <option value="Shop" ${page.type === 'Shop' ? 'selected' : ''}>Shop</option>
+            <option value="Blog" ${page.type === 'Blog' ? 'selected' : ''}>Blog</option>
+            <option value="Contact" ${page.type === 'Contact' ? 'selected' : ''}>Contact</option>
+            <option value="Custom" ${page.type === 'Custom' ? 'selected' : ''}>Custom</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Short Notes</label>
+        <textarea class="form-textarea" rows="2" 
+          onchange="updatePage(${page.id}, 'notes', this.value)">${page.notes}</textarea>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updatePage(id, field, value) {
+  const page = pages.find(p => p.id === id);
+  if (page) {
+    page[field] = value;
+    if (field === 'title' && !page.slug) {
+      page.slug = slugify(value);
+    }
+    renderPages();
+    saveFormData();
+  }
+}
+
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+// Example sites repeater
+function addExampleSite() {
+  const id = Date.now();
+  exampleSites.push({ id, url: '', notes: '' });
+  renderExampleSites();
+  saveFormData();
+}
+
+function removeExampleSite(id) {
+  exampleSites = exampleSites.filter(s => s.id !== id);
+  renderExampleSites();
+  saveFormData();
+}
+
+function renderExampleSites() {
+  const container = document.getElementById('exampleSitesRepeater');
+  container.innerHTML = exampleSites.map((site, index) => `
+    <div class="repeater-item">
+      <button type="button" class="repeater-remove" onclick="removeExampleSite(${site.id})">×</button>
+      <div class="form-group">
+        <label class="form-label">Website URL ${index + 1}</label>
+        <input type="url" class="form-input" value="${site.url}" 
+          onchange="updateExampleSite(${site.id}, 'url', this.value)"
+          placeholder="https://example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">What do you like about it?</label>
+        <textarea class="form-textarea" rows="2" 
+          onchange="updateExampleSite(${site.id}, 'notes', this.value)">${site.notes}</textarea>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateExampleSite(id, field, value) {
+  const site = exampleSites.find(s => s.id === id);
+  if (site) {
+    site[field] = value;
+    saveFormData();
+  }
+}
+
+// File upload
+function setupFileUpload() {
+  const zone = document.getElementById('fileUploadZone');
+  const input = document.getElementById('fileInput');
+
+  zone.addEventListener('click', () => input.click());
+
+  zone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    zone.classList.add('drag-over');
+  });
+
+  zone.addEventListener('dragleave', () => {
+    zone.classList.remove('drag-over');
+  });
+
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  });
+
+  input.addEventListener('change', (e) => {
+    handleFiles(e.target.files);
+  });
+}
+
+function handleFiles(files) {
+  const newFiles = Array.from(files);
+  
+  if (uploadedFiles.length + newFiles.length > maxFiles) {
+    alert(`Maximum ${maxFiles} files allowed`);
+    return;
+  }
+
+  let newSize = totalFileSize;
+  newFiles.forEach(file => newSize += file.size);
+
+  if (newSize > maxFileSize) {
+    alert('Total file size exceeds 25MB limit');
+    return;
+  }
+
+  newFiles.forEach(file => {
+    uploadedFiles.push(file);
+    totalFileSize += file.size;
+  });
+
+  renderFilePreview();
+  updateFileSizeDisplay();
+}
+
+function removeFile(index) {
+  totalFileSize -= uploadedFiles[index].size;
+  uploadedFiles.splice(index, 1);
+  renderFilePreview();
+  updateFileSizeDisplay();
+}
+
+function renderFilePreview() {
+  const grid = document.getElementById('filePreviewGrid');
+  grid.innerHTML = uploadedFiles.map((file, index) => {
+    const isImage = file.type.startsWith('image/');
+    const preview = isImage ? URL.createObjectURL(file) : '📄';
+    
+    return `
+      <div class="file-preview-item">
+        <button type="button" class="file-preview-remove" onclick="removeFile(${index})">×</button>
+        ${isImage 
+          ? `<img src="${preview}" class="file-preview-img" alt="${file.name}">` 
+          : `<div style="height: 100px; display: flex; align-items: center; justify-content: center; font-size: 3rem;">${preview}</div>`
+        }
+        <div class="file-preview-name">${file.name}</div>
+        <div class="file-preview-size">${(file.size / 1024).toFixed(1)} KB</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateFileSizeDisplay() {
+  const helper = document.getElementById('fileSizeHelper');
+  const mb = (totalFileSize / 1024 / 1024).toFixed(2);
+  helper.textContent = `${mb} MB / 25 MB`;
+}
+
+// Color picker sync
+function setupColorSync() {
+  const colorPrimary = document.getElementById('colorPrimary');
+  const colorPrimaryHex = document.getElementById('colorPrimaryHex');
+  const colorSecondary = document.getElementById('colorSecondary');
+  const colorSecondaryHex = document.getElementById('colorSecondaryHex');
+
+  colorPrimary.addEventListener('input', (e) => {
+    colorPrimaryHex.value = e.target.value;
+  });
+
+  colorPrimaryHex.addEventListener('input', (e) => {
+    if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+      colorPrimary.value = e.target.value;
+    }
+  });
+
+  colorSecondary.addEventListener('input', (e) => {
+    colorSecondaryHex.value = e.target.value;
+  });
+
+  colorSecondaryHex.addEventListener('input', (e) => {
+    if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+      colorSecondary.value = e.target.value;
+    }
+  });
+}
+
+// Budget radio logic
+function setupBudgetRadio() {
+  const radios = document.querySelectorAll('[name="budget"]');
+  const otherInput = document.getElementById('budgetOther');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      otherInput.style.display = radio.value === 'other' ? 'block' : 'none';
+    });
+  });
+}
+
+// Review rendering (no booking)
+function renderReview() {
+  const reviewContent = document.getElementById('reviewContent');
+  const formData = new FormData(document.getElementById('briefForm'));
+  
+  let html = '';
+
+  // Business Info
+  html += `
+    <div class="review-section">
+      <div class="review-section-title">
+        Business Information
+        <button type="button" class="review-edit-btn" onclick="editStep(1)">Edit</button>
+      </div>
+      <div class="review-content">
+        <div class="review-item">
+          <div class="review-label">Business Name</div>
+          <div class="review-value">${formData.get('businessName') || 'Not provided'}</div>
+        </div>
+        <div class="review-item">
+          <div class="review-label">Contact</div>
+          <div class="review-value">${formData.get('contactName')} · ${formData.get('email')}</div>
+        </div>
+        <div class="review-item">
+          <div class="review-label">Business Type</div>
+          <div class="review-value">${formData.get('businessType') || 'Not specified'}</div>
+        </div>
+        <div class="review-item">
+          <div class="review-label">Description</div>
+          <div class="review-value">${formData.get('projectDescription') || 'Not provided'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Pages
+  html += `
+    <div class="review-section">
+      <div class="review-section-title">
+        Pages (${pages.length})
+        <button type="button" class="review-edit-btn" onclick="editStep(2)">Edit</button>
+      </div>
+      <div class="review-content">
+        ${pages.map(page => `
+          <div class="review-item">
+            <div class="review-value"><strong>${page.title}</strong> (${page.type})</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Features
+  const features = Array.from(document.querySelectorAll('[name="features"]:checked')).map(el => el.value);
+  html += `
+    <div class="review-section">
+      <div class="review-section-title">
+        Features (${features.length})
+        <button type="button" class="review-edit-btn" onclick="editStep(3)">Edit</button>
+      </div>
+      <div class="review-content">
+        <div class="review-value">${features.join(', ') || 'None selected'}</div>
+      </div>
+    </div>
+  `;
+
+  // Branding
+  html += `
+    <div class="review-section">
+      <div class="review-section-title">
+        Branding & Assets
+        <button type="button" class="review-edit-btn" onclick="editStep(4)">Edit</button>
+      </div>
+      <div class="review-content">
+        <div class="review-item">
+          <div class="review-label">Files Uploaded</div>
+          <div class="review-value">${uploadedFiles.length} files (${(totalFileSize / 1024 / 1024).toFixed(2)} MB)</div>
+        </div>
+        <div class="review-item">
+          <div class="review-label">Colors</div>
+          <div class="review-value">
+            <span style="display: inline-block; width: 20px; height: 20px; background: ${formData.get('colorPrimaryHex')}; border-radius: 4px; vertical-align: middle;"></span>
+            ${formData.get('colorPrimaryHex')} · 
+            <span style="display: inline-block; width: 20px; height: 20px; background: ${formData.get('colorSecondaryHex')}; border-radius: 4px; vertical-align: middle;"></span>
+            ${formData.get('colorSecondaryHex')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Budget
+  const budget = formData.get('budget') === 'other' ? formData.get('budgetOther') : formData.get('budget');
+  html += `
+    <div class="review-section">
+      <div class="review-section-title">
+        Budget & Timeline
+        <button type="button" class="review-edit-btn" onclick="editStep(5)">Edit</button>
+      </div>
+      <div class="review-content">
+        <div class="review-item">
+          <div class="review-label">Budget</div>
+          <div class="review-value">${budget || 'Not specified'}</div>
+        </div>
+        <div class="review-item">
+          <div class="review-label">Go-Live Date</div>
+          <div class="review-value">${formData.get('goLiveDate') || 'Flexible'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  reviewContent.innerHTML = html;
+}
+
+function editStep(step) {
+  currentStep = step;
+  showStep(currentStep);
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const BACKEND_ENDPOINT = "/submit-brief";
+
+function showSubmitError(msg) {
+  alert("Sorry, we couldn’t send your brief.\n\n" + msg + "\n\nPlease try again, or email admin@solarisai.co.uk.");
+}
+
+async function submitBrief() {
+  // final step (5) validation
+  if (!validateStep(totalSteps)) return;
+
+  // Honeypot
+  if (document.querySelector('[name="website"]').value) return;
+
+  const briefData = collectFormData();
+  window.briefData = briefData; // keep "Download JSON" working
+
+  // Build multipart body for your backend
+  const fd = new FormData();
+  fd.append("brief_json", JSON.stringify(briefData, null, 2));
+  uploadedFiles.forEach(file => fd.append("attachments", file, file.name));
+
+  try {
+    const res = await fetch(BACKEND_ENDPOINT, {
+      method: "POST",
+      body: fd
+    });
+    const payload = await res.json().catch(() => ({}));
+
+    if (!res.ok || payload.ok !== true) {
+      const msg = payload && (payload.error || JSON.stringify(payload));
+      showSubmitError(msg || `HTTP ${res.status}`);
+      return;
+    }
+
+    // Success UI
+    document.querySelector(".wizard-card:not(.success-screen)").style.display = "none";
+    document.getElementById("successScreen").classList.add("show");
+    localStorage.removeItem("websiteBrief");
+  } catch (e) {
+    showSubmitError(e.message || String(e));
+  }
+}
+
+function collectFormData() {
+  const formData = new FormData(document.getElementById('briefForm'));
+  const data = {
+    timestamp: new Date().toISOString(),
+    contact: {
+      businessName: formData.get('businessName'),
+      contactName: formData.get('contactName'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      businessType: formData.get('businessType'),
+      location: formData.get('location'),
+      description: formData.get('projectDescription')
+    },
+    pages: pages,
+    features: Array.from(document.querySelectorAll('[name="features"]:checked')).map(el => el.value),
+    integrations: {
+      facebook: formData.get('int_facebook'),
+      instagram: formData.get('int_instagram'),
+      tiktok: formData.get('int_tiktok'),
+      linkedin: formData.get('int_linkedin'),
+      googleBusiness: formData.get('int_google'),
+      bookingTool: formData.get('int_booking_tool'),
+      domain: formData.get('int_domain'),
+      oldWebsite: formData.get('int_old_website')
+    },
+    // booking removed → always null
+    booking: null,
+    branding: {
+      files: uploadedFiles.map(f => ({ name: f.name, size: f.size, type: f.type })),
+      primaryColor: formData.get('colorPrimaryHex'),
+      secondaryColor: formData.get('colorSecondaryHex'),
+      logoText: formData.get('logoText'),
+      fontPreference: formData.get('fontPreference'),
+      exampleSites: exampleSites
+    },
+    budget: formData.get('budget') === 'other' ? formData.get('budgetOther') : formData.get('budget'),
+    goLiveDate: formData.get('goLiveDate'),
+    ongoingNeeds: Array.from(document.querySelectorAll('[name="ongoing"]:checked')).map(el => el.value),
+    additionalNotes: formData.get('additionalNotes')
+  };
+
+  return data;
+}
+
+function downloadJSON() {
+  const data = window.briefData || collectFormData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'website-brief.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

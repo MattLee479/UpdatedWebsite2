@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solaris AI - Professional ChatGPT Website Chatbots</title>
+    <meta name="icon-author" content="Icons by riajulislam - https://www.flaticon.com/authors/riajulislam">
+    <meta name="description" content="Transform your website with intelligent AI chatbots powered by ChatGPT. Professional chatbot development and integration services by Solaris AI.">
+    <meta name="author" content="Solaris AI">
+    <meta name="keywords" content="AI chatbots, ChatGPT integration, website chatbots, customer service automation, AI development">
+    
+    <meta property="og:title" content="Solaris AI - Professional ChatGPT Website Chatbots">
+    <meta property="og:description" content="Transform your website with intelligent AI chatbots powered by ChatGPT. Professional chatbot development and integration services.">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Solaris AI - Professional ChatGPT Website Chatbots">
+    <meta name="twitter:description" content="Transform your website with intelligent AI chatbots powered by ChatGPT.">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+  <div class="container">
+    <div class="nav-wrapper">
+      <!-- Logo -->
+      <a href="#home" class="logo">
+        <img src="/static/images/my-logo.webp" alt="Solaris AI">
+      </a>
+
+      <!-- Toggle (hidden checkbox) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+
+      <!-- Hamburger button (label controls checkbox) -->
+      <label for="nav-toggle" class="mobile-menu-btn" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </label>
+                
+                <!-- Desktop Navigation -->
+<div class="nav-links" id="navLinks">
+  <a href="#services" class="nav-link">Services</a>
+  <a href="#examples" class="nav-link">Examples</a>
+  <a href="#testimonials" class="nav-link">Testimonials</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="badge">
+            🚀 Powered by ChatGPT Technology
+        </div>
+        <h1 class="hero-title">
+            Professional Websites<br>
+            & Intelligent Chatbots
+        </h1>
+        <p class="hero-subtitle">
+            Ready to make your dream website or transform your current one with AI-powered chatbots? Let's build something amazing together.
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('brief') }}" class="btn-primary">
+                Start Your Project
+                <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </a>
+            <a href="#examples" class="btn-secondary">View Examples</a>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number blue">10+</div>
+                <div class="stat-label">Design Concepts</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number purple">100%</div>
+                <div class="stat-label">Custom Solutions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number indigo">24/7</div>
+                <div class="stat-label">Support Included</div>
+            </div>
+        </div>
+    </section>
+
+<!-- Services Section -->
+    <section id="services" class="section section-white">
+        <div class="section">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">
+                Comprehensive AI chatbot and website solutions designed to elevate your business.
+            </p>
+            <div class="cards-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3>AI Chatbot Development</h3>
+                    <p>Custom ChatGPT-powered chatbots tailored to your business needs.</p>
+                    <ul class="feature-list">
+                        <li><span class="checkmark"></span>Natural Language Processing</li>
+                        <li><span class="checkmark"></span>Custom Training Data</li>
+                        <li><span class="checkmark"></span>Multi-platform Support</li>
+                    </ul>
+                    <div class="price">From £299</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <h3>Website Creation</h3>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="old-price">£300</span>
+                        <span class="sale-badge">50% OFF</span>
+                    </div>
+                    <p>Professional websites with modern design and seamless functionality.</p>
+                    <ul class="feature-list">
+                        <li><span class="checkmark"></span>Responsive Design</li>
+                        <li><span class="checkmark"></span>Modern UI/UX</li>
+                        <li><span class="checkmark"></span>SEO Optimized</li>
+                    </ul>
+                    <div class="price">Now £150</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- AI Chatbot Services Section -->
+    <section class="section section-gray">
+        <div class="section">
+            <h2 class="section-title">AI Chatbot Services</h2>
+            <p class="section-subtitle">
+                Comprehensive AI chatbot solutions designed to elevate your business
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i data-lucide="bot" style="color: white; width: 32px; height: 32px;"></i>
+                    </div>
+                    <h3 class="card-title">AI Chatbot Development</h3>
+                    <p class="card-description">
+                        Custom ChatGPT-powered chatbots tailored to your business needs
+                    </p>
+                    <ul class="card-features">
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            24/7 Customer Support
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Natural Language Processing
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Custom Training Data
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i data-lucide="message-square" style="color: white; width: 32px; height: 32px;"></i>
+                    </div>
+                    <h3 class="card-title">Website Integration</h3>
+                    <p class="card-description">
+                        Seamless integration of chatbots into your existing website
+                    </p>
+                    <ul class="card-features">
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Easy Installation
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Responsive Design
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Cross-Platform Compatible
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i data-lucide="zap" style="color: white; width: 32px; height: 32px;"></i>
+                    </div>
+                    <h3 class="card-title">Advanced Analytics</h3>
+                    <p class="card-description">
+                        Comprehensive insights into customer interactions and behavior
+                    </p>
+                    <ul class="card-features">
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Real-time Metrics
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Conversation Analytics
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                            Performance Tracking
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Website Examples Section -->
+<section id="examples" class="section section-white">
+    <div class="section">
+        <h2 class="section-title">Website Examples</h2>
+        <p class="section-subtitle">
+            See our professional website designs across different industries. Click to explore each example.
+        </p>
+        <div class="website-grid">
+            <div class="project-card" onclick="window.open('https://hudsonnail.com/', '_blank')">
+                <div class="project-image tech-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/hand.webp" alt="WhatsApp" width="48" height="48"></svg>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">Nail Salon</div>
+                    <div class="project-description">Live website for Hudson Nails in Cambridge</div>
+                    <div class="project-tags">
+                        <span class="tag">Whatsapp</span>
+                        <span class="tag">Bookings</span>
+                        <span class="tag">Quality</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('restaurant.html', '_blank')">
+                <div class="project-image restaurant-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/restaurant.webp" alt="WhatsApp" width="48" height="48"></svg>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">Restaurant</div>
+                    <div class="project-description">Demo website to show an elegant restaurant with online booking and menu.</div>
+                    <div class="project-tags">
+                        <span class="tag">Restaurant</span>
+                        <span class="tag">Hospitality</span>
+                        <span class="tag">Local</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://williamleebooks.onrender.com/', '_blank')">
+                <div class="project-image ecommerce-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/book.webp" alt="WhatsApp" width="48" height="48"></svg>
+                    </div>
+                <div class="project-content">
+                    <div class="project-title">Authors Page</div>
+                    <div class="project-description">Live website for Sci-Fi & Mystery author to showcase books</div>
+                    <div class="project-tags">
+                        <span class="tag">Author</span>
+                        <span class="tag">Portfolio</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://demo3-ekv8.onrender.com/', '_blank')">
+                <div class="project-image tech-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/hand.webp" alt="WhatsApp" width="48" height="48"></svg>
+                    </div>
+                <div class="project-content">
+                    <div class="project-title">Nail Salon</div>
+                    <div class="project-description">Live website for Northstowe Nails</div>
+                    <div class="project-tags">
+                        <span class="tag">Nail Salon</span>
+                        <span class="tag">Bookings</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://paw-prints-dog-grooming.onrender.com/', '_blank')">
+                <div class="project-image doggroomers-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/pawprint.webp" alt="WhatsApp" width="48" height="48"></svg>
+                    </div>
+                <div class="project-content">
+                    <div class="project-title">Dog Groomers</div>
+                    <div class="project-description">Demo website for a dog groomers</div>
+                    <div class="project-tags">
+                        <span class="tag">Demo</span>
+                        <span class="tag">Dog Groomers</span>
+                        <span class="tag">Showcase</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="window.open('https://ad-stevens.co.uk/', '_blank')">
+                <div class="project-image ecommerce-preview" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                    <img src="/static/images/book.webp" alt="WhatsApp" width="48" height="48"></svg>
+                    </div>
+                <div class="project-content">
+                    <div class="project-title">Authors Page</div>
+                    <div class="project-description">Live website to showcase a book for a fantasy author</div>
+                    <div class="project-tags">
+                        <span class="tag">Author</span>
+                        <span class="tag">Fantasy</span>
+                        <span class="tag">Information</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a href="{{ url_for('brief') }}" class="btn btn-primary">Build Your Website Project Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+    <section id="testimonials" class="section section-gray">
+        <div class="section">
+            <h2 class="section-title">Client Success Stories</h2>
+            <p class="section-subtitle">
+                See how our AI chatbots have transformed businesses across industries
+            </p>
+            
+            <div class="cards-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Solaris AI is a must use. Created a website to use as a hub for my writing journey. Brilliant attention to detail, and really easy to communicate with when I needed things changing/adding. The website had clickable elements that adds a brilliant touch. I would 100% recommend someone to have a website produced by Solaris AI!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i data-lucide="user" style="color: white; width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>William Lee</h4>
+                            <p>Sci-Fi / Mystery Author</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Fabulous service, been there to guide me each step of the way. Never not responded to any questions. Professional and quick. Still there at any point if I have an issues or updates always done promptly with constant updates."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i data-lucide="user" style="color: white; width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Andrew Stevens</h4>
+                            <p>Fantasy Author</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "I honestly can’t thank Mathew enough for all the help and support. I’d highly recommend Mathew to anyone who needs help with building or launching a website. He’s reliable, skilled, and genuinely cares about delivering the best results. I would give him 10 stars if I could."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i data-lucide="user" style="color: white; width: 20px; height: 20px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Danielle Hudson</h4>
+                            <p>Nail Salon Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section section-blue">
+        <div class="section">
+            <h2 class="section-titlewhite" style="color: white;">Ready to Get Started?</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">
+                Let's discuss your chatbot project. Contact us for a free consultation and custom quote.
+            </p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <span>admin@solarisai.co.uk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+                        <span>07557 169678</span>
+                    </div>
+                    
+
+                    
+                    <div class="contact-features">
+                        <h4>Why Choose Solaris AI?</h4>
+                        <ul>
+                            <li>
+                                <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                                <span>Expert Website Design</span>
+                            </li>
+                            <li>
+                                <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                                <span>Expert ChatGPT integration</span>
+                            </li>
+                            <li>
+                                <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                                <span>Competitive pricing for startups</span>
+                            </li>
+                            <li>
+                                <i data-lucide="check-circle" style="color: #10b981; width: 16px; height: 16px;"></i>
+                                <span>Ongoing support and maintenance</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <form action="https://formsubmit.co/admin@solarisai.co.uk" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
+    </div>
+    <div class="form-group">
+        <label for="message">Project Details</label>
+        <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+    </div>
+    <button type="submit" class="btn-form">Send Message</button>
+</form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+
+    <!-- Top -->
+    <div class="footer-top">
+      <div class="footer-column">
+        <h3 class="footer-title">Solaris AI</h3>
+         <p>Custom coding websites all businesses while utilising modern software to offer better prices!</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#services">Services & Pricing</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact Me</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Connect With Me</h4>
+        <p>Worcester, West Midlands, England</p>
+        <p>07557 169678</p>
+<div class="social-links">
+  <a class="social-btn facebook"  href="https://www.facebook.com/profile.php?id=61580148629984" aria-label="Facebook">Follow me on Facebook</a>
+  <a class="social-btn instagram" href="https://www.instagram.com/solarisai.co.uk/" aria-label="Instagram">Follow me on Instagram</a>
+  <a class="social-btn tiktok"    href="https://www.tiktok.com/@getsolarisai?lang=en" aria-label="TikTok">Follow me on Tiktok</a>
+  <a class="social-btn whatsapp"  href="https://wa.me/447557169678" aria-label="Whatsapp">Message me on WhatsApp</a>
+</div>
+      </div>
+    </div>
+
+<!-- Bottom -->
+<div class="footer-bottom">
+  <span>© <span id="currentYear"></span> Solaris AI. All rights reserved.</span>
+  <span class="dot" aria-hidden="true">·</span>
+  <a class="credit" href="https://www.solarisai.co.uk" target="_blank" rel="noopener"
+     aria-label="Website by Solaris AI">
+    <img src="/static/images/my-logo.webp" alt="Solaris AI">
+  </a>
+</div>
+</footer>
+
+<script>
+  // Lucide icons
+  if (window.lucide) lucide.createIcons?.();
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    if (window.scrollY > 20) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Smooth scrolling + close menu
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      const navToggle = document.getElementById('nav-toggle');
+      if (navToggle) navToggle.checked = false;
+    });
+  });
+
+  // Contact form — only if it exists
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      if (!name || !email || !message) return alert('Please fill in all fields.');
+      alert('Thank you for your message! We\'ll get back to you soon.');
+      this.reset();
+    });
+  }
+
+  // Reviews scroller — only if elements exist
+  const track = document.getElementById("reviewsTrack");
+  const prevBtn = document.querySelector(".reviews-nav.prev");
+  const nextBtn = document.querySelector(".reviews-nav.next");
+  if (track && prevBtn && nextBtn && track.querySelector(".review-card")) {
+    const scrollAmount = track.querySelector(".review-card").offsetWidth + 24;
+    prevBtn.addEventListener("click", () => track.scrollBy({ left: -scrollAmount, behavior: "smooth" }));
+    nextBtn.addEventListener("click", () => track.scrollBy({ left:  scrollAmount, behavior: "smooth" }));
+  }
+</script>
+{% include 'widget.html' %}
+</body>
+</html>
