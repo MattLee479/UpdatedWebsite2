@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website Brief Viewer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#f8fafc; --card:#fff; --muted:#6b7280; --ink:#111827;
+    --grad:linear-gradient(135deg,#2563eb,#9333ea);
+  }
+  body{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0}
+  .wrap{max-width:960px;margin:40px auto;padding:0 20px}
+  .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .title{font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .card{background:var(--card);border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:20px;margin:16px 0}
+  h2{font-size:20px;margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .item{background:#f3f4f6;border-radius:10px;padding:12px}
+  .label{font-size:12px;color:var(--muted);margin-bottom:4px}
+  .value{font-size:14px}
+  .pill{display:inline-block;padding:.25rem .6rem;border-radius:999px;background:#eef2ff;margin:4px 6px 0 0;font-size:12px}
+  .list{margin:0;padding-left:18px}
+  .files{display:flex;flex-wrap:wrap;gap:8px}
+  .file{border:1px solid #e5e7eb;border-radius:10px;padding:8px 10px;font-size:12px;background:#fff}
+  .color{display:inline-flex;align-items:center;gap:8px;margin-right:14px}
+  .sw{width:18px;height:18px;border-radius:4px;border:1px solid #e5e7eb;display:inline-block}
+  input[type="file"]{display:none}
+  .btn{background:var(--grad);color:#fff;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}
+  pre{white-space:pre-wrap;background:#0b1020;color:#d1e3ff;border-radius:12px;padding:12px;overflow:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="title">Website Brief Viewer</div>
+    <label class="btn" for="file">Open brief JSON…</label>
+    <input id="file" type="file" accept="application/json">
+  </div>
+
+  <div id="content" class="card">
+    <p>Choose a <strong>website-brief.json</strong> file to see a formatted summary here.</p>
+  </div>
+
+  <details class="card">
+    <summary><strong>Raw JSON</strong> (optional)</summary>
+    <pre id="raw"></pre>
+  </details>
+</div>
+
+<script>
+const fileInput = document.getElementById('file');
+const content = document.getElementById('content');
+const raw = document.getElementById('raw');
+
+fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const text = await file.text();
+  let data;
+  try { data = JSON.parse(text); } catch(err){ 
+    content.innerHTML = '<p>Invalid JSON file.</p>'; return; 
+  }
+  raw.textContent = JSON.stringify(data, null, 2);
+  render(data);
+});
+
+function v(x){ return (x ?? '').toString().trim() || '<em style="color:#6b7280">Not provided</em>'; }
+
+function render(d){
+  const c = d.contact || {};
+  const inx = d.integrations || {};
+  const branding = d.branding || {};
+  const pages = d.pages || [];
+  const features = d.features || [];
+  const ongoing = d.ongoingNeeds || [];
+
+  content.innerHTML = `
+    <div class="card">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="item"><div class="label">Business Name</div><div class="value">${v(c.businessName)}</div></div>
+        <div class="item"><div class="label">Contact Name</div><div class="value">${v(c.contactName)}</div></div>
+        <div class="item"><div class="label">Email</div><div class="value">${v(c.email)}</div></div>
+        <div class="item"><div class="label">Phone</div><div class="value">${v(c.phone)}</div></div>
+        <div class="item"><div class="label">Business Type</div><div class="value">${v(c.businessType)}</div></div>
+        <div class="item"><div class="label">Location</div><div class="value">${v(c.location)}</div></div>
+      </div>
+      <div class="item" style="margin-top:12px">
+        <div class="label">Project Description</div>
+        <div class="value">${v(c.description)}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Pages (${pages.length})</h2>
+      ${pages.length ? `<ol class="list">${pages.map(p=>`
+        <li><strong>${v(p.title)}</strong> (${v(p.type)})${p.slug?` — /${p.slug}`:''}${p.notes?`<br><span class="label">Notes:</span> ${v(p.notes)}`:''}</li>
+      `).join('')}</ol>` : '<p class="value">None</p>'}
+    </div>
+
+    <div class="card">
+      <h2>Features</h2>
+      ${features.length ? features.map(f=>`<span class="pill">${f}</span>`).join('') : '<p class="value">None selected</p>'}
+    </div>
+
+    <div class="card">
+      <h2>Integrations</h2>
+      <div class="grid">
+        ${renderField('Facebook', inx.facebook)}
+        ${renderField('Instagram', inx.instagram)}
+        ${renderField('TikTok', inx.tiktok)}
+        ${renderField('LinkedIn', inx.linkedin)}
+        ${renderField('Google Business', inx.googleBusiness)}
+        ${renderField('Existing Booking Tool', inx.bookingTool)}
+        ${renderField('Desired Domain', inx.domain)}
+        ${renderField('Old Website', inx.oldWebsite)}
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Branding & Assets</h2>
+      <div class="value" style="margin:6px 0;">
+        <span class="color"><span class="sw" style="background:${branding.primaryColor||'#000'}"></span>${v(branding.primaryColor)}</span>
+        <span class="color"><span class="sw" style="background:${branding.secondaryColor||'#000'}"></span>${v(branding.secondaryColor)}</span>
+      </div>
+      <div class="grid">
+        ${renderField('Logo Text', branding.logoText)}
+        ${renderField('Font Preference', branding.fontPreference)}
+      </div>
+      <div style="margin-top:10px">
+        <div class="label">Example Sites</div>
+        ${branding.exampleSites?.length 
+          ? `<ol class="list">${branding.exampleSites.map(s=>`<li>${v(s.url)}${s.notes?` — ${v(s.notes)}`:''}</li>`).join('')}</ol>`
+          : '<div class="value">None</div>'
+        }
+      </div>
+      <div style="margin-top:10px">
+        <div class="label">Uploaded Files (names & sizes)</div>
+        <div class="files">
+          ${(branding.files||[]).map(f=>`<span class="file">${f.name} · ${(f.size/1024).toFixed(1)} KB</span>`).join('') || '<div class="value">None</div>'}
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Budget & Timeline</h2>
+      <div class="grid">
+        ${renderField('Budget', d.budget)}
+        ${renderField('Go-Live Date', d.goLiveDate)}
+      </div>
+      <div style="margin-top:10px">
+        <div class="label">Ongoing Needs</div>
+        ${ongoing.length ? ongoing.map(o=>`<span class="pill">${o}</span>`).join('') : '<div class="value">None</div>'}
+      </div>
+      <div class="item" style="margin-top:12px">
+        <div class="label">Additional Notes</div>
+        <div class="value">${v(d.additionalNotes)}</div>
+      </div>
+      <div class="item" style="margin-top:12px">
+        <div class="label">Timestamp</div>
+        <div class="value">${v(d.timestamp)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderField(label, val){
+  return `<div class="item"><div class="label">${label}</div><div class="value">${v(val)}</div></div>`;
+}
+</script>
+</body>
+</html>
